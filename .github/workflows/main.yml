@@ -1,0 +1,24 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main  # Будет запускаться при каждом коммите в main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Используется Ubuntu для выполнения
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Шаг для клонирования репозитория
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Устанавливает Node.js версии 14
+
+      - name: Install dependencies
+        run: npm install  # Установка зависимостей
+
+      - name: Run tests
+        run: npm test  # Запуск тестов (если у тебя настроены тесты через npm)
