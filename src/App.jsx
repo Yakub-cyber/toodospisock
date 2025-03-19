@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import SearchBar from './components/SearchBar.jsx'
 import ProductList from './components/ProductList.jsx'
+import './App.css'
 //import catalog_data from './catalog_data (2).js'
 
 const App = () => {

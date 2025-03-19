@@ -36,23 +36,59 @@ h1 {
 
 .product-list {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(3, 1fr); /* Три колонки по умолчанию */
 	gap: 20px;
 }
 
-.product-card {
-	padding: 15px;
-	background-color: #ecf0f1;
-	border-radius: 8px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+	.app-container {
+		padding: 10px;
+	}
+
+	.product-list {
+		grid-template-columns: repeat(2, 1fr); /* 2 колонки на экранах до 768px */
+	}
+
+	.search-container input {
+		width: 90%;
+		font-size: 14px;
+	}
+
+	.product-card {
+		padding: 10px;
+	}
+
+	.product-card h3 {
+		font-size: 16px;
+	}
+
+	.product-card p {
+		font-size: 14px;
+	}
 }
 
-.product-card h3 {
-	margin: 0;
-	font-size: 18px;
-	color: #34495e;
-}
+/* Стили для устройств с экраном менее 340px */
+@media (max-width: 340px) {
+	.product-list {
+		grid-template-columns: 1fr; /* 1 колонка */
+		grid-template-rows: repeat(2, 1fr); /* 2 ряда */
+	}
 
-.product-card p {
-	color: #7f8c8d;
+	.search-container input {
+		width: 100%;
+		font-size: 12px;
+	}
+
+	.product-card {
+		padding: 8px;
+	}
+
+	.product-card h3 {
+		font-size: 14px;
+	}
+
+	.product-card p {
+		font-size: 12px;
+	}
 }
