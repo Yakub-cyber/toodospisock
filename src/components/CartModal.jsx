@@ -104,7 +104,10 @@ const CartModal = ({ onClose }) => {
 											₽
 										</td>
 										<td>
-											<button onClick={() => removeItemFromCart(name)}>
+											<button
+												className='delate-cart'
+												onClick={() => removeItemFromCart(name)}
+											>
 												Удалить
 											</button>
 										</td>
