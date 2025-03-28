@@ -67,6 +67,11 @@ h1 {
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.quantity-controls {
+	display: flex;
+	justify-content: space-around;
+}
+
 .product-card:hover {
 	transform: translateY(-4px);
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -276,11 +281,6 @@ h1 {
 			2,
 			1fr
 		); /* 2 колонки для экранов от 280px до 480px */
-	}
-
-	.quantity-controls {
-		display: flex;
-		justify-content: space-around;
 	}
 
 	.search-container input {
