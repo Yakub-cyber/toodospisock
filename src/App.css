@@ -44,7 +44,11 @@ h1 {
 }
 
 .button-corzina {
+	font-size: 17px;
 	margin-bottom: 5px;
+	color: rgb(255, 255, 255);
+	background-color: #34495e;
+	border-radius: 4px;
 }
 
 .product-list {
@@ -126,6 +130,18 @@ h1 {
 	text-align: center;
 	font-weight: 600;
 	color: #333;
+}
+
+.delate-cart {
+	background-color: #f44336;
+	color: white;
+	border-radius: 4px;
+}
+
+.add-corzine {
+	color: rgb(255, 255, 255);
+	background-color: #34495e;
+	border-radius: 5px;
 }
 
 .cart-modal {
@@ -262,6 +278,11 @@ h1 {
 		); /* 2 колонки для экранов от 280px до 480px */
 	}
 
+	.quantity-controls {
+		display: flex;
+		justify-content: space-around;
+	}
+
 	.search-container input {
 		width: 90%;
 		font-size: 14px;
@@ -319,8 +340,11 @@ h1 {
 	}
 
 	.quantity-controls button {
-		padding: 4px 8px;
-		font-size: 14px;
+		padding: 2px 4px;
+		font-size: 8px;
+		color: rgb(255, 255, 255);
+		background-color: #34495e;
+		border-radius: 3px;
 	}
 }
 

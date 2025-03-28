@@ -55,7 +55,10 @@ const ProductList = ({ products, onAddToCart }) => {
 								<button onClick={() => increment(index, 'unit')}>+</button>
 							</div>
 						</div>
-						<button onClick={() => handleAddToCart(product, index)}>
+						<button
+							className='add-corzine'
+							onClick={() => handleAddToCart(product, index)}
+						>
 							Добавить в корзину
 						</button>
 					</div>
