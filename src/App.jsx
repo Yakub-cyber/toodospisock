@@ -11,6 +11,7 @@ const App = () => {
 	const { addItemToCart } = useCart()
 
 	const data1 = [
+		{ name: 'Кола Стекло (6шт) 1л', price: 600 },
 		{ name: 'Мохито Дин (12шт) 0,5л', price: 490 },
 		{ name: '7-ка Груша 1,5л', price: 230 },
 		{ name: 'Адреналин ж/б 0,25л', price: 670 },
@@ -187,6 +188,7 @@ const App = () => {
 	]
 
 	const date2 = [
+		{ name: 'Кола Стекло (6шт) 1л', price: 120 },
 		{ name: 'Мохито Дин (12шт) 0,5л', price: 50 },
 		{ name: '7-ка Груша 1,5л', price: 50 },
 		{ name: 'Адреналин ж/б 0,25л', price: 60 },
