@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import { CartProvider, useCart } from './CartContext'
 import SearchBar from './components/SearchBar.jsx'
 import ProductList from './components/ProductList.jsx'
+import CartModal from './components/CartModal.jsx'
 import './App.css'
-//import catalog_data from './catalog_data (2).js'
 
 const App = () => {
 	const [searchTerm, setSearchTerm] = useState('')
+	const [isCartModalOpen, setCartModalOpen] = useState(false)
+	const { addItemToCart } = useCart()
 
 	const data1 = [
 		{ name: '7-ка Груша 1,5л', price: 230 },
@@ -366,22 +369,39 @@ const App = () => {
 		}
 	})
 
-	console.log(combinedArray)
-
-	// Фильтруем товары по наименованию
 	const filteredProducts = combinedArray.filter(product =>
 		product.name.toLowerCase().includes(searchTerm.toLowerCase())
 	)
 
-	console.log(combinedArray)
+	const handleAddToCart = (
+		name,
+		pricePerPack,
+		pricePerUnit,
+		packQuantity,
+		unitQuantity
+	) => {
+		addItemToCart(name, pricePerPack, pricePerUnit, packQuantity, unitQuantity)
+	}
 
 	return (
 		<div className='app-container'>
 			<h1>Поиск товаров</h1>
 			<SearchBar setSearchTerm={setSearchTerm} />
-			<ProductList products={filteredProducts} />
+			<button className='button-corzina' onClick={() => setCartModalOpen(true)}>
+				Открыть корзину
+			</button>
+			{isCartModalOpen && <CartModal onClose={() => setCartModalOpen(false)} />}
+			<ProductList products={filteredProducts} onAddToCart={handleAddToCart} />
 		</div>
 	)
 }
 
-export default App
+const AppWrapper = () => {
+	return (
+		<CartProvider>
+			<App />
+		</CartProvider>
+	)
+}
+
+export default AppWrapper
