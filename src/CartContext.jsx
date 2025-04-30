@@ -3,61 +3,46 @@ import React, { createContext, useState, useContext } from 'react'
 const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-	const [cart, setCart] = useState({})
+	const [cart, setCart] = useState([])
 
-	// Функция для добавления товара в корзину
-	const addItemToCart = (
-		name,
-		pricePerPack,
-		pricePerUnit,
-		packQuantity,
-		unitQuantity
-	) => {
+	// Добавление массива позиций
+	const addItemToCart = items => {
 		setCart(prevCart => {
-			const updatedCart = { ...prevCart }
-			if (updatedCart[name]) {
-				updatedCart[name].packQuantity += packQuantity
-				updatedCart[name].unitQuantity += unitQuantity
-			} else {
-				updatedCart[name] = {
-					pricePerPack,
-					pricePerUnit,
-					packQuantity,
-					unitQuantity,
+			const updatedCart = [...prevCart]
+			items.forEach(newItem => {
+				const idx = updatedCart.findIndex(
+					item =>
+						item.name === newItem.name && item.priceType === newItem.priceType
+				)
+				if (idx !== -1) {
+					updatedCart[idx].quantity += newItem.quantity
+				} else {
+					updatedCart.push({ ...newItem })
 				}
-			}
+			})
 			return updatedCart
 		})
 	}
 
-	// Функция для обновления количества товара в корзине
-	const updateItemQuantity = (name, type, quantity) => {
-		setCart(prevCart => {
-			const updatedCart = { ...prevCart }
-			if (updatedCart[name]) {
-				if (type === 'pack') {
-					updatedCart[name].packQuantity = quantity
-				} else if (type === 'unit') {
-					updatedCart[name].unitQuantity = quantity
-				}
-			}
-			return updatedCart
-		})
+	const updateItemQuantity = (name, priceType, quantity) => {
+		setCart(prevCart =>
+			prevCart.map(item =>
+				item.name === name && item.priceType === priceType
+					? { ...item, quantity }
+					: item
+			)
+		)
 	}
 
-	// Функция для удаления товара из корзины
-	const removeItemFromCart = name => {
-		setCart(prevCart => {
-			const updatedCart = { ...prevCart }
-			delete updatedCart[name]
-			return updatedCart
-		})
+	const removeItemFromCart = (name, priceType) => {
+		setCart(prevCart =>
+			prevCart.filter(
+				item => !(item.name === name && item.priceType === priceType)
+			)
+		)
 	}
 
-	// Функция для очистки корзины
-	const clearCart = () => {
-		setCart({})
-	}
+	const clearCart = () => setCart([])
 
 	return (
 		<CartContext.Provider

@@ -5,29 +5,22 @@ export const sendToTelegram = async cartData => {
 	const botToken = '7902481935:AAFU51NsKHKqlaIkxSYMyJKX3ov8zT6c_rI'
 	const chatId = '1437540633'
 
-	// Формируем текст сообщения для отправки
-	let message = 'Новый заказ:\n\n'
+	// Формируем текстовое сообщение для Telegram
+	let message = '*Новый заказ:*\n\n'
+	let total = 0
 
-	Object.keys(cartData).forEach(name => {
-		const item = cartData[name]
-		message += `
-    Товар: ${name}
-    Цена за упаковку: ${item.pricePerPack}₽
-    Цена за штуку: ${item.pricePerUnit}₽
-    Количество упаковок: ${item.packQuantity}
-    Количество штук: ${item.unitQuantity}
-    Сумма: ${
-			item.pricePerPack * item.packQuantity +
-			item.pricePerUnit * item.unitQuantity
-		}₽
-    ----------------------------------------
-    `
+	cartData.forEach(item => {
+		const sum = item.price * item.quantity
+		total += sum
+		message += `\n${item.name} — ${item.priceType}\nЦена: ${item.price}₽\nКоличество: ${item.quantity}\nСумма: ${sum}₽\n`
 	})
 
-	// Отправка запроса в Telegram API
-	const url = `https://api.telegram.org/bot${botToken}/sendMessage`
+	message += `\n*Итого: ${total}₽*`
+
+	// Отправляем текстовое сообщение
+	const urlText = `https://api.telegram.org/bot${botToken}/sendMessage`
 	try {
-		await axios.post(url, {
+		await axios.post(urlText, {
 			chat_id: chatId,
 			text: message,
 			parse_mode: 'Markdown',
