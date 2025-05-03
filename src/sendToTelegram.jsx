@@ -2,8 +2,8 @@ import axios from 'axios'
 
 // Функция для отправки данных в Telegram
 export const sendToTelegram = async cartData => {
-	const botToken = '7902481935:AAFU51NsKHKqlaIkxSYMyJKX3ov8zT6c_rI'
-	const chatId = '1437540633'
+	const botToken = import.meta.env.VITE_BOT_TOKEN
+	const chatId = import.meta.env.VITE_CHAT_ID
 
 	// Формируем текстовое сообщение для Telegram
 	let message = '*Новый заказ:*\n\n'

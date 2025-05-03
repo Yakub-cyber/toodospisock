@@ -6,8 +6,7 @@ import CartModal from './components/CartModal.jsx'
 import './App.css'
 import Papa from 'papaparse'
 
-const SHEET_CSV_URL =
-	'https://docs.google.com/spreadsheets/d/1ecYUS0bEILKFANqXx3H0X7dLy-SoYiZo/export?format=csv'
+const SHEET_CSV_URL = import.meta.env.VITE_SHEET_CSV_URL
 
 const App = () => {
 	const [searchTerm, setSearchTerm] = useState('')
